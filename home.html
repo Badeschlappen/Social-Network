@@ -1,3 +1,12 @@
+/**
+ * Shows the status page.
+ *
+ * @author		Patrick B
+ * @copyright 	2014 [CC BY-NC-SA 3.0 <http://creativecommons.org/licenses/by-nc-sa/3.0/deed>] All Rights Reserved.
+ * @package		com.mgc.social-network
+ *
+ **/
+
 <html>
 <head>
     <link href="style/style.css" rel="stylesheet" type="text/css" media="screen"/>
