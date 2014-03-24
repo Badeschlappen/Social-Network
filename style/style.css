@@ -1,0 +1,53 @@
+body{
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-image: url(../images/header.png);
+    background-repeat: repeat-x;
+    background-color: #FFFFFF;
+}
+
+#root{
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    text-align: left;    
+}
+
+#logo{
+    width: 415px;
+    height: 77px;
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+#sub-navi{
+    height: 30px;
+    margin: 0;
+    padding-top: 10px;
+    width: 1000px;
+}
+
+#content{
+    width: 1000px;
+    background-image: url(../images/content-bg.png);
+    background-repeat: repeat-y;
+    min-height: 50px;
+    padding-top: 5px;
+    margin-top: -2px;
+}
+
+#navi{
+    padding: 5px;
+    width: 172px;
+    float: left;
+}
+
+#main-content{
+    padding: 5px;
+    width: 818px;
+    float: left;
+}

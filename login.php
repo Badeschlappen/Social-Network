@@ -1,40 +1,39 @@
-<?php 
-// Database connection
-mysql_connect("host", "user", "pass") or die("Error connecting to the database.");
+<?php
+//Datenbankverbindung
+mysql_connect("localhost", "user", "pass1") or die("Fehler bei der Verbindung mit der Datenbank.");
 mysql_select_db("network");
-// Login process
+//Loginprozess
 $email = $_POST['email'];
 $password = $_POST['password'];
-if($email != "" AND $password != ""){
+if($email != "" AND $password != "") {
     $email = mysql_real_escape_string($email);
-    $password =md5($password);
-    // Extract data from database
-    $selectUserData = mysql_query("SELCT * FROM user WHERE email = '{$email}'");
-    // The user exists at all
-        if(mysql_num_rows($selectUserData) > 0){
-            $dbData = mysql_fetch_assoc($selectUserData);
-            if($dbData['password'] == $password){
-                $userip = $_SERVER['REMOTE_ADDR'];
-                $userid = $dbData['id'];
-                $insert = mysql_query("INSERT INTO loginlog VALUES('','{$userid}','{$userip}')");
-                $_SESSION['userid'] = $userid;
-                // Weiterleitung
-                    $host = $_SERVER['HTTP_HOST'];
-                    $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-                    header("Location: http://$host$uri/home.html");
-                    exit;  
-            }
-            else{
-                $output = "Incorrect password."
-            }
+    $password = md5($password);
+    //Daten aus Datenbank holen
+    $selectUserData = mysql_query("SELECT * FROM user WHERE email = '{$email}'");
+    if(mysql_num_rows($selectUserData) > 0){
+        //Aufarbeiten der Datenbankwerte
+        $dbData = mysql_fetch_assoc($selectUserData);
+        if($dbData['password'] == $password){
+            $userip = $_SERVER['REMOTE_ADDR'];
+            $userid = $dbData['id'];
+            $insert = mysql_query("INSERT INTO loginlog VALUES ('', '{$userid}','{$userip}')");
+            $_SESSION['userid'] = $userid;
+            //Weiterleitung
+            $host = $_SERVER['HTTP_HOST'];
+            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            header("Location: http://$host$uri/home.html");
+            exit;
         }
         else{
-            $output = "The user does not exist.";
-        }
+            $output = "Falsches Passwort.";
+        }    
+    }
     else{
-        $output = "Please fill out all fields."
-    }    
+        $output = "Der Benutzer ist nicht vorhanden.";
+    }
 }
-
+else{
+    $output = "Bitte f&uuml;llen Sie alle Felder aus.";
+}
 echo $output;
 ?>
